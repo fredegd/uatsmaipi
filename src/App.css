@@ -1,0 +1,53 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.details{
+  width: 50%;
+  background-color: dodgerblue;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.detailItem{
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.detailItem h3{
+width: 40%;
+}
+.detailItem p{
+  width: 60%;
+  }
+.info{
+    display: inline;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 3em;
+    margin-inline-end: 3em;
+}
+.info.param{
+  font-weight:900;
+  display: inline-block;
+  color: blue;
+}
+.info.value{
+  display: inline-block;
+  text-align: left;
+}
+
+
+.leaflet-container {
+  width: 100%;
+  height: 400px;
+}
+
+#map {
+  height: 180px;
+}
