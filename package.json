@@ -1,10 +1,10 @@
 {  "name": "uatsmaipi",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://fredegd.github.io/uatsmaipi",
+  "homepage": "https://fredegd.github.io/uatsmaipi/",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "vite build",
