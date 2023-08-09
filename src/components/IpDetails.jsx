@@ -1,6 +1,5 @@
 import React from "react";
 import MyIpMap from "./MyIpMap";
-import "../App.css"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 export default function IpDetails({ geodata, position, ipAddress, allData }) {
   console.log(geodata, position, ipAddress, allData);
@@ -14,7 +13,7 @@ export default function IpDetails({ geodata, position, ipAddress, allData }) {
 
         <TabPanel key={1}>
           <h2>{geodata.city}</h2>
-          {position && <MyIpMap position={position} />}
+          {<MyIpMap position={position} />}
         </TabPanel>
 
         <TabPanel key={2}>

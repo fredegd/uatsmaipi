@@ -6,6 +6,7 @@ import IpDetails from "./components/IpDetails"
 
 import "react-tabs/style/react-tabs.css";
 import "./App.css";
+import MyIpMap from "./components/MyIpMap";
 
 function App() {
   const [allData, setAllData] = useState({})
@@ -50,7 +51,10 @@ function App() {
       <h1>Big Brother is watching You</h1>
       <h2>He Knows for example</h2>
       {isLoading ? (
+        <div>
         <p>Loading...</p>
+        {/* <MyIpMap/> */}
+        </div>
       ) : (
         <div>
           <p>Your IP Address: {ipAddress}</p>
@@ -68,7 +72,7 @@ function App() {
             <img
               src={countryFlag}
               alt="Country Flag"
-              style={{ width: "300px" }}
+              style={{ width: "350px" }}
             />
           )}
           <IpDetails geodata={geodata} position={position} ipAddress={ipAddress} allData={allData} />
