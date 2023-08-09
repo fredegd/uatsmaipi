@@ -11,7 +11,7 @@ function App() {
   const [allData, setAllData] = useState({})
   const [ipAddress, setIpAddress] = useState("");
   const [geodata, setGeodata] = useState({});
-  const [position, setPosition] = useState({});
+  const [position, setPosition] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [countryFlag, setCountryFlag] = useState();
   const [countryName, setCountryName] = useState();
@@ -25,10 +25,10 @@ function App() {
         const { city, postalCode, region, country, timezone, lat, lng } =
           response.data.location;
         setGeodata({ city, postalCode, region, country, timezone, lat, lng });
-        setPosition({
-          lat: response.data.location.lat,
-          lng: response.data.location.lng,
-        });
+        setPosition([
+          response.data.location.lat,
+          response.data.location.lng,
+        ]);
         axios
           .get(`https://restcountries.com/v3.1/name/${country}`)
           .then((response) => {
@@ -71,7 +71,7 @@ function App() {
               style={{ width: "300px" }}
             />
           )}
-          {!isLoading && <IpDetails geodata={geodata} position={position} ipAddress={ipAddress} allData={allData} />}
+          <IpDetails geodata={geodata} position={position} ipAddress={ipAddress} allData={allData} />
         </div>
       )}
     </div>
