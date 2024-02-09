@@ -1,15 +1,17 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { client } from "./client";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import IpDetails from "./components/IpDetails"
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import GridEyes from "./assets/Grid_Eyes.gif";
+import IpDetails from "./components/IpDetails";
 
 import "react-tabs/style/react-tabs.css";
 import "./App.css";
-import MyIpMap from "./components/MyIpMap";
+// import MyIpMap from "./components/MyIpMap";
 
 function App() {
-  const [allData, setAllData] = useState({})
+  const [allData, setAllData] = useState({});
   const [ipAddress, setIpAddress] = useState("");
   const [geodata, setGeodata] = useState({});
   const [position, setPosition] = useState([]);
@@ -21,15 +23,12 @@ function App() {
     axios
       .get(`https://geo.ipify.org/api/v2/country,city?apiKey=${client.apiKey}`)
       .then((response) => {
-        setAllData(response.data)
+        setAllData(response.data);
         setIpAddress(response.data.ip);
         const { city, postalCode, region, country, timezone, lat, lng } =
           response.data.location;
         setGeodata({ city, postalCode, region, country, timezone, lat, lng });
-        setPosition([
-          response.data.location.lat,
-          response.data.location.lng,
-        ]);
+        setPosition([response.data.location.lat, response.data.location.lng]);
         axios
           .get(`https://restcountries.com/v3.1/name/${country}`)
           .then((response) => {
@@ -49,21 +48,22 @@ function App() {
   return (
     <div>
       <h1>Big Brother is watching You</h1>
+      <img src={GridEyes} alt="eye" />
       <h2>He Knows for example</h2>
       {isLoading ? (
         <div>
-        <p>Loading...</p>
-        {/* <MyIpMap/> */}
+          <p>Loading...</p>
+          {/* <MyIpMap/> */}
         </div>
       ) : (
         <div>
           <p>Your IP Address: {ipAddress}</p>
           <h2>and as well he knows your position:</h2>
           <p>
-            in this very moment You are located in: {geodata.city},{" "}
+            in this very moment Your provider is located in: {geodata.city},{" "}
             {geodata.region}, {countryName}
           </p>
-          <h2>more precisely located at</h2>
+          <h2>more precisely at</h2>
           <p>
             latitude: {geodata.lat}, longitude: {geodata.lng}
           </p>
@@ -75,7 +75,12 @@ function App() {
               style={{ width: "350px" }}
             />
           )}
-          <IpDetails geodata={geodata} position={position} ipAddress={ipAddress} allData={allData} />
+          <IpDetails
+            geodata={geodata}
+            position={position}
+            ipAddress={ipAddress}
+            allData={allData}
+          />
         </div>
       )}
     </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import MyIpMap from "./MyIpMap";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 export default function IpDetails({ geodata, position, ipAddress, allData }) {
