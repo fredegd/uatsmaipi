@@ -48,7 +48,10 @@ function App() {
   return (
     <div>
       <h1>Big Brother is watching You</h1>
-      <img src={GridEyes} alt="eye" />
+      <div>
+        <img className="eye" src={GridEyes} alt="eye" />
+        <img className="eye" src={GridEyes} alt="eye" />
+      </div>
       <h2>He Knows for example</h2>
       {isLoading ? (
         <div>

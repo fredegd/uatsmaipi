@@ -11,7 +11,7 @@
   border: 2px dashed blue;
 } */
 
-.details{
+.details {
   background-color: dodgerblue;
   color: white;
   display: flex;
@@ -19,17 +19,29 @@
   justify-content: space-between;
 }
 
-.detailItem{
+.detailItem {
   padding: 0 1em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.detailItem h3{
-width: 40%;
+.detailItem h3 {
+  width: 40%;
 }
-.detailItem p{
+.detailItem p {
   text-align: left;
   width: 60%;
- }
+}
+
+.eyeWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.eye {
+  width: auto;
+  max-width: 600px;
+  width: 50%;
+  height: 50%;
+}
