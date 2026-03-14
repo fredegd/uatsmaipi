@@ -1,15 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-dark: hsl(230, 20%, 5%);
+  --bg-card: hsla(230, 20%, 10%, 0.8);
+  --accent-cyan: hsl(180, 100%, 50%);
+  --accent-cyan-glow: hsla(180, 100%, 50%, 0.3);
+  --accent-red: hsl(0, 100%, 60%);
+  --text-primary: hsl(230, 20%, 95%);
+  --text-secondary: hsl(230, 10%, 70%);
+  --border-color: hsla(180, 100%, 50%, 0.2);
+  --border-glow: hsla(180, 100%, 50%, 0.1);
+  
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 50%, hsl(230, 25%, 12%) 0%, var(--bg-dark) 100%);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .mono {
+  font-family: 'Space Mono', monospace;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent-cyan);
+  text-shadow: 0 0 20px var(--accent-cyan-glow);
+}
+
+* {
+  box-sizing: border-box;
 }

@@ -46,47 +46,67 @@ function App() {
       });
   }, []);
   return (
-    <div>
-      <h1>Big Brother is watching You</h1>
-      <div>
-        <img className="eye" src={GridEyes} alt="eye" />
-        <img className="eye" src={GridEyes} alt="eye" />
-      </div>
-      <h2>He Knows for example</h2>
+    <main>
+      <header>
+        <h1>System Surveillance</h1>
+        <div className="scanner-container">
+          <div className="eyeWrapper">
+            <img className="eye" src={GridEyes} alt="scanning eye" />
+            <img className="eye" src={GridEyes} alt="scanning eye" />
+          </div>
+        </div>
+      </header>
+
       {isLoading ? (
-        <div>
-          <p>Loading...</p>
-          {/* <MyIpMap/> */}
+        <div className="scanner-container">
+          <p className="mono">Initializing connection... Scanning network...</p>
         </div>
       ) : (
-        <div>
-          <p>Your IP Address: {ipAddress}</p>
-          <h2>and as well he knows your position:</h2>
-          <p>
-            in this very moment Your provider is located in: {geodata.city},{" "}
-            {geodata.region}, {countryName}
-          </p>
-          <h2>more precisely at</h2>
-          <p>
-            latitude: {geodata.lat}, longitude: {geodata.lng}
-          </p>
-          <p>Time Zone is: UTC{geodata.timezone}</p>
-          {countryFlag && (
-            <img
-              src={countryFlag}
-              alt="Country Flag"
-              style={{ width: "350px" }}
-            />
-          )}
+        <section className="dashboard">
+          <div className="status-grid">
+            <div className="info-card">
+              <h3>Device IP Address</h3>
+              <p className="accent-text">{ipAddress}</p>
+            </div>
+            <div className="info-card location-card">
+              <div className="location-content">
+                <h3>Current Location</h3>
+                <p>
+                  {geodata.city}, {geodata.region}, <span className="accent-text">{countryName}</span>
+                </p>
+              </div>
+              {countryFlag && (
+                <div className="mini-flag">
+                  <img
+                    src={countryFlag}
+                    alt={`${countryName} flag`}
+                    className="flag-img-small"
+                  />
+                </div>
+              )}
+            </div>
+            <div className="info-card">
+              <h3>Precise Coordinates</h3>
+              <p className="mono">
+                LAT: {geodata.lat} | LNG: {geodata.lng}
+              </p>
+            </div>
+            <div className="info-card">
+              <h3>Temporal Zone</h3>
+              <p className="mono">UTC {geodata.timezone}</p>
+            </div>
+          </div>
+
+
           <IpDetails
             geodata={geodata}
             position={position}
             ipAddress={ipAddress}
             allData={allData}
           />
-        </div>
+        </section>
       )}
-    </div>
+    </main>
   );
 }
 

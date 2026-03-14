@@ -6,8 +6,12 @@ import "../App.css"
 export default function MyIpMap({position}) {
   return (
     <div id="map">
-      <MapContainer center={position} zoom={12} scrollWheelZoom={true}         style={{ height: "80vh", width: "100%" }}
->
+      <MapContainer 
+        center={position} 
+        zoom={12} 
+        scrollWheelZoom={true} 
+        style={{ aspectRatio: "3 / 2", width: "100%", height: "auto" }}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

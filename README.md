@@ -3,5 +3,4 @@ this app displays the IP Address as well as some other location infos about the 
 
 ![Eyes](./src/assets/Grid_Eyes.gif)
 
-Deployment:
-https://uatsmaipi.netlify.app/
+Deployment: [uatsmaipi](https://fredegd.github.io/uatsmaipi/)

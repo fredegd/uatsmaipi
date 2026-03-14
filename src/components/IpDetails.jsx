@@ -1,33 +1,40 @@
 import MyIpMap from "./MyIpMap";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 export default function IpDetails({ geodata, position, ipAddress, allData }) {
-  console.log(geodata, position, ipAddress, allData);
   return (
-    <div>
+    <div className="details-wrapper">
       <Tabs>
         <TabList>
-          <Tab>Location</Tab>
-          <Tab>IP Data</Tab>
+          <Tab>GEOGRAPHIC POSITION</Tab>
+          <Tab>NETWORK METRICS</Tab>
         </TabList>
 
         <TabPanel key={1}>
-          <h2>{geodata.city}</h2>
-          {<MyIpMap position={position} />}
+          <h2 className="mono" style={{ color: "var(--accent-cyan)", marginBottom: "1rem" }}>
+            {geodata.city} TERMINAL
+          </h2>
+          <div className="map-card">
+            <MyIpMap position={position} />
+          </div>
         </TabPanel>
 
         <TabPanel key={2}>
-          <div className="details">
-            <div className="detailItem">
-              <h2>YOUR IP</h2>
-              <p>{ipAddress}</p>
+          <div className="status-grid" style={{ marginTop: "0" }}>
+            <div className="info-card">
+              <h3>Assigned IP</h3>
+              <p className="accent-text">{ipAddress}</p>
             </div>
-            <div className="detailItem">
-              <h2>YOUR ISP </h2>
+            <div className="info-card">
+              <h3>Service Provider</h3>
               <p>{allData.isp}</p>
             </div>
-            <div className="detailItem">
-              <h2>Domain: </h2>
-              <p>{allData.as.domain}</p>
+            <div className="info-card">
+              <h3>Network Domain</h3>
+              <p className="mono">{allData.as?.domain || "N/A"}</p>
+            </div>
+            <div className="info-card">
+              <h3>Routing Info</h3>
+              <p className="mono">{allData.as?.name || "N/A"}</p>
             </div>
           </div>
         </TabPanel>
