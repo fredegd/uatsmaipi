@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import GridEyes from "./assets/Grid_Eyes.gif";
 import IpDetails from "./components/IpDetails";
+import InfoModal, { InfoButton } from "./components/InfoModal";
 
 import "react-tabs/style/react-tabs.css";
 import "./App.css";
@@ -20,6 +21,7 @@ function App() {
   const [countryName, setCountryName] = useState();
   const [deviceData, setDeviceData] = useState({});
   const [locationSource, setLocationSource] = useState("IP");
+  const [modalInfo, setModalInfo] = useState({ isOpen: false, title: "", contentKey: "" });
 
   useEffect(() => {
     const getDeviceData = () => {
@@ -157,11 +159,10 @@ function App() {
 
         if (loc.country) {
           axios
-            .get(`https://restcountries.com/v3.1/name/${loc.country}`)
+            .get(`https://restcountries.com/v3.1/alpha/${loc.country}`)
             .then((response) => {
-              const nationId = response.data.findIndex((el) => el.cca2 === "DE");
-              setCountryFlag(response.data[nationId].flags.png);
-              setCountryName(response.data[nationId].altSpellings[1]);
+              setCountryFlag(response.data.flags.png);
+              setCountryName(response.data.altSpellings[1]);
             })
             .catch((err) => {
               console.error("impossible to set the flag,", err);
@@ -240,10 +241,12 @@ function App() {
         <section className="dashboard">
           <div className="status-grid">
             <div className="info-card">
+              <InfoButton onClick={() => setModalInfo({ isOpen: true, title: "IP Address", contentKey: "ipAddress" })} />
               <h3>Device IP Address</h3>
               <p className="accent-text">{ipAddress}</p>
             </div>
             <div className="info-card location-card">
+              <InfoButton onClick={() => setModalInfo({ isOpen: true, title: "Current Location", contentKey: "currentLocation" })} />
               <div className="location-content">
                 <h3>Current Location</h3>
                 <p>
@@ -261,6 +264,7 @@ function App() {
               )}
             </div>
             <div className="info-card">
+              <InfoButton onClick={() => setModalInfo({ isOpen: true, title: "Precise Coordinates", contentKey: "coordinates" })} />
               <h3>Precise Coordinates</h3>
               <p className="mono">
                 LAT: {geodata.lat} | LNG: {geodata.lng}
@@ -268,6 +272,7 @@ function App() {
               <p style={{ fontSize: "0.75rem", opacity: 0.7 }}>Source: {locationSource}</p>
             </div>
             <div className="info-card">
+              <InfoButton onClick={() => setModalInfo({ isOpen: true, title: "Timezone", contentKey: "timezone" })} />
               <h3>Temporal Zone</h3>
               <p className="mono">UTC {geodata.timezone}</p>
             </div>
@@ -281,6 +286,14 @@ function App() {
             allData={allData}
             deviceData={deviceData}
             locationSource={locationSource}
+            setModalInfo={setModalInfo}
+          />
+
+          <InfoModal
+            isOpen={modalInfo.isOpen}
+            onClose={() => setModalInfo({ ...modalInfo, isOpen: false })}
+            title={modalInfo.title}
+            contentKey={modalInfo.contentKey}
           />
         </section>
       )}
